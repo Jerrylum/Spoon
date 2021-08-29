@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.jerryio.spoon.kernal</groupId>
+  <artifactId>SpoonKernal</artifactId>
+  
+  <version>0.0.1-SNAPSHOT</version>
+  <name>SpoonKernal</name>
+  <inceptionYear>2021</inceptionYear>
+  <packaging>jar</packaging>
+  
+  <description>The Spoon Kernal</description>
+  <url>https://github.com/Jerrylum/SpoonKernal/</url>
+  
+  <issueManagement>
+  	<system>GitHub Issues</system>
+  	<url>https://github.com/Jerrylum/SpoonKernal/issues</url>
+  </issueManagement>
+  
+  <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+  
+  <licenses>
+  	<license>
+ 	  <name>GNU General Public License v3.0</name>
+	  <url>https://github.com/Jerrylum/SpoonKernal/blob/main/LICENSE</url>
+	  <distribution>repo</distribution>
+  	</license>
+  </licenses>
+  
+  <developers>
+    <developer>
+      <name>Jerrylum</name>
+      <email>me@jerryio.com</email>
+      <url>jerryio.com</url>
+    </developer>
+  </developers>
+  
+  <repositories>
+  </repositories>
+  
+  <dependencies>
+    <dependency>
+      <groupId>org.java-websocket</groupId>
+      <artifactId>Java-WebSocket</artifactId>
+      <version>1.5.1</version>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+    <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
+    <defaultGoal>clean package</defaultGoal>
+    
+    <finalName>${project.name}_v${project.version}</finalName>
+    
+    <plugins>
+    </plugins>
+    
+    <resources>
+      <resource>
+        <directory>${basedir}/src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+  </build>
+</project>
