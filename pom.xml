@@ -24,9 +24,9 @@
   
   <licenses>
     <license>
-     <name>GNU General Public License v3.0</name>
-    <url>https://github.com/Jerrylum/SpoonKernal/blob/main/LICENSE</url>
-    <distribution>repo</distribution>
+      <name>GNU General Public License v3.0</name>
+      <url>https://github.com/Jerrylum/SpoonKernal/blob/main/LICENSE</url>
+      <distribution>repo</distribution>
     </license>
   </licenses>
   

@@ -14,17 +14,20 @@ public class PacketEncoder {
         packet.write(gen1);
         int gen1Length = gen1.position();
         byte[] gen1bytes = new byte[gen1Length];
-        gen1.rewind().get(gen1bytes, 0, gen1Length);
+        gen1.rewind(); // IMPORTANT: no optimize
+        gen1.get(gen1bytes, 0, gen1Length);
 
         ByteBuffer gen2 = ByteBuffer.allocate(1024*1024);
         gen2.put(connection.getEncryption().encode(gen1bytes));
         int gen2Length = gen2.position();
         byte[] gen2bytes = new byte[gen2Length];
-        gen2.rewind().get(gen2bytes, 0, gen2Length);
+        gen2.rewind(); // IMPORTANT: no optimize
+        gen2.get(gen2bytes, 0, gen2Length);
 
         ByteBuffer gen3 = ByteBuffer.allocate(gen2Length+4);
         gen3.putInt(gen2Length).put(gen2bytes);
-        return gen3.rewind();
+        gen3.rewind();
+        return gen3;
     }
 
     public static Packet decode(ByteBuffer gen3, Connection connection) throws Exception {
