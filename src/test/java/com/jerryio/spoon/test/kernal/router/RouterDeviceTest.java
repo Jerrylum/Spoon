@@ -30,11 +30,11 @@ public class RouterDeviceTest {
         RouterDevice router =  new RouterDevice(new InetSocketAddress(++port), new MockRouterListener());
         router.start();
 
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         ClientDevice localClient = new ClientDevice(new URI("ws://127.0.0.1:" + port), new MockClientListener());
 
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         assertTrue(localClient.getConnection().isConnected());
     }
@@ -44,11 +44,11 @@ public class RouterDeviceTest {
         RouterDevice router =  new RouterDevice(new InetSocketAddress(++port), new MockRouterListener());
         router.start();
 
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         ClientDevice localClient = new ClientDevice(new URI("ws://127.0.0.1:" + port), new MockClientListener());
 
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         assertTrue(localClient.isEncrypted());
     }
@@ -60,19 +60,19 @@ public class RouterDeviceTest {
         RouterDevice router =  new RouterDevice(new InetSocketAddress(++port), new MockRouterListener(events));
         router.start();
 
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         ClientDevice localClient1 = new ClientDevice(new URI("ws://127.0.0.1:" + port), new MockClientListener(events));
 
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         ClientDevice localClient2 = new ClientDevice(new URI("ws://127.0.0.1:" + port), new MockClientListener(events));
 
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         ClientDevice localClient3 = new ClientDevice(new URI("ws://127.0.0.1:" + port), new MockClientListener(events));
 
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         localClient1.setChannel("Apple");
         localClient2.setChannel("Apple");

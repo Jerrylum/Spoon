@@ -38,11 +38,11 @@ public class ServerDeviceTest {
         ServerDevice server =  new ServerDevice(new InetSocketAddress(++port), new MockServerListener());
         server.start();
 
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         ClientDevice localClient = new ClientDevice(new URI("ws://127.0.0.1:" + port), new MockClientListener());
 
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         assertTrue(localClient.getConnection().isConnected());
     }
@@ -52,11 +52,11 @@ public class ServerDeviceTest {
         ServerDevice server =  new ServerDevice(new InetSocketAddress(++port), new MockServerListener());
         server.start();
 
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         ClientDevice localClient = new ClientDevice(new URI("ws://127.0.0.1:" + port), new MockClientListener());
 
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         assertTrue(localClient.isEncrypted());
     }
@@ -70,29 +70,29 @@ public class ServerDeviceTest {
         ServerDevice server =  new ServerDevice(new InetSocketAddress(++port), new MockServerListener(events));
         server.start();
 
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         ClientDevice localClient = new ClientDevice(new URI("ws://127.0.0.1:" + port), new MockClientListener(events));
 
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         localClient.sendTextMessage("hello server");
 
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         server.sendTextMessage("hello client");
 
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         localClient.sendTextMessage("你好");
 
-        Thread.sleep(100);
+        Thread.sleep(200);
         
         assertTrue(localClient.isEncrypted());
 
         localClient.getConnection().close();
 
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         assertFalse(localClient.getConnection().isConnected());
 
