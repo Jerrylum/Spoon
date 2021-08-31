@@ -31,6 +31,8 @@ public class SecurityTest {
         }
 
         manager.makeAESCiphers(AESUtils.createKey(128), AESUtils.createIv(16));
+        manager.makeAESCiphers(AESUtils.createKey(128), null);
+        manager.makeAESCiphers(null, AESUtils.createIv(16));
         manager.makeAESCiphers(null, null);
         
         manager.setRSAEncryptCipher(null);
