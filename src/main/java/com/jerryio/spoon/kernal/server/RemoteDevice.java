@@ -9,9 +9,10 @@ import org.java_websocket.WebSocket;
 public class RemoteDevice {
     private RemoteConnection connection;
     private String channel;
-    private int lastMessagePacketId;
+    private int id;
 
-    public RemoteDevice(WebSocket socket) {
+    public RemoteDevice(int id, WebSocket socket) {
+        this.id = id;
         this.connection = new RemoteConnection(socket);
         this.channel = "";
     }
@@ -32,12 +33,11 @@ public class RemoteDevice {
         this.channel = newChannel;
     }
 
-    public int getLastMessagePacketId() {
-        return this.lastMessagePacketId;
+    public int getId() {
+        return id;
     }
 
     public void sendTextMessage(String msg) throws IOException {
-        lastMessagePacketId = connection.getSentPackets();
         connection.sendPacket(new SendTextPacket(msg));
     }
 }

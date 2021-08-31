@@ -7,6 +7,7 @@ import java.util.List;
 import com.jerryio.spoon.kernal.event.EventHandler;
 import com.jerryio.spoon.kernal.event.server.ClientConnectedEvent;
 import com.jerryio.spoon.kernal.event.server.ClientDisconnectedEvent;
+import com.jerryio.spoon.kernal.event.server.ServerErrorEvent;
 import com.jerryio.spoon.kernal.network.protocol.general.SendTextPacket;
 import com.jerryio.spoon.kernal.network.protocol.handshake.EncryptionBeginPacket;
 import com.jerryio.spoon.kernal.server.RemoteDevice;
@@ -26,6 +27,11 @@ public class MockServerListener extends ServerListener {
     @EventHandler
     public void logClientAESKey(RemoteDevice device, EncryptionBeginPacket packet) {
         log.add(packet);
+    }
+
+    @EventHandler
+    public void logServerError(ServerErrorEvent event) {
+        log.add(event);
     }
 
     @Override

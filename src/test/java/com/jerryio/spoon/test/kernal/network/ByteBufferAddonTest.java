@@ -18,6 +18,11 @@ import org.junit.Test;
 public class ByteBufferAddonTest {
 
 	@Test
+    public void testByteBufferAddon() throws Exception {
+        new ByteBufferAddon() {};
+    }
+
+	@Test
 	public void testReadWriteAsciiString() {
 		String expected = "hello world";
 
@@ -95,6 +100,16 @@ public class ByteBufferAddonTest {
 	public void testReadLengthNegativePublicKey() {
 		ByteBuffer buffer = ByteBuffer.allocate(1024);
 		buffer.putInt(-1);
+
+		buffer.rewind();
+		ByteBufferAddon.readPublicKey(buffer);
+	}
+
+	@Test(expected = RuntimeException.class)
+	public void testReadInvalidPublicKey() {
+		ByteBuffer buffer = ByteBuffer.allocate(1024);
+		buffer.putInt(4);
+		buffer.putInt(0);
 
 		buffer.rewind();
 		ByteBufferAddon.readPublicKey(buffer);

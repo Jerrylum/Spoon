@@ -54,21 +54,13 @@ public class EncryptionManager {
     }
     
     public void makeRSAPublicEncryptCipher(RSAPublicKey key) throws GeneralSecurityException {
-        try {
-            rsaEncryptCipher = Cipher.getInstance("RSA/ECB/PKCS1Padding"); //NoSuchPaddingException
-            rsaEncryptCipher.init(Cipher.ENCRYPT_MODE, key); //InvalidKeyException
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        rsaEncryptCipher = Cipher.getInstance("RSA/ECB/PKCS1Padding"); //NoSuchPaddingException
+        rsaEncryptCipher.init(Cipher.ENCRYPT_MODE, key); //InvalidKeyException
     }
 
     public void makeRSAPrivateDecryptCipher(RSAPrivateKey key) throws GeneralSecurityException {
-        try {
-            rsaDecryptCipher = Cipher.getInstance("RSA/ECB/PKCS1Padding"); //NoSuchPaddingException
-            rsaDecryptCipher.init(Cipher.DECRYPT_MODE, key); //InvalidKeyException
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        rsaDecryptCipher = Cipher.getInstance("RSA/ECB/PKCS1Padding"); //NoSuchPaddingException
+        rsaDecryptCipher.init(Cipher.DECRYPT_MODE, key); //InvalidKeyException
     }
 
     public void makeAESCiphers(SecretKey key, IvParameterSpec iv) throws GeneralSecurityException {

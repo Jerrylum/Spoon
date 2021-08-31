@@ -17,6 +17,11 @@ import org.junit.Test;
 public class PacketEncoderTest {
 
     @Test
+    public void testPacketEncoderContructer() throws Exception {
+        new PacketEncoder();
+    }
+
+    @Test
     public void testEncodeDecodeRawPacket() throws Exception {
         MockConnection conn = new MockConnection();
 
