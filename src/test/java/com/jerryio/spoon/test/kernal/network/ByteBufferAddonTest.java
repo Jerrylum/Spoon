@@ -105,6 +105,16 @@ public class ByteBufferAddonTest {
 		ByteBufferAddon.readPublicKey(buffer);
 	}
 
+	@Test(expected = RuntimeException.class)
+	public void testReadInvalidPublicKey() {
+		ByteBuffer buffer = ByteBuffer.allocate(1024);
+		buffer.putInt(4);
+		buffer.putInt(0);
+
+		buffer.rewind();
+		ByteBufferAddon.readPublicKey(buffer);
+	}
+
 	@Test
 	public void testReadWriteSecretKey() {
 		SecretKey expected = AESUtils.createKey(256);

@@ -68,6 +68,7 @@ public class ServerDeviceTest {
 
         server.getDevice(0).getConnection().getEncryption().setAESEncryptCipher(null); // just for test
         assertFalse(server.getDevice(0).isEncrypted());
+        assertNull(server.getDevice(1));
     }
     
     @Test
