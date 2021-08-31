@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.jerryio.spoon.kernal.client.ClientListener;
 import com.jerryio.spoon.kernal.event.EventHandler;
+import com.jerryio.spoon.kernal.event.client.ClientErrorEvent;
 import com.jerryio.spoon.kernal.event.client.ConnectionCloseEvent;
 import com.jerryio.spoon.kernal.event.client.ConnectionOpenEvent;
 import com.jerryio.spoon.kernal.network.protocol.general.SendTextPacket;
@@ -42,6 +43,11 @@ public class MockClientListener extends ClientListener {
     @EventHandler
     public void logPacketSent(ReceivedPacket packet) {
         log.add(packet);
+    }
+
+    @EventHandler
+    public void logClientError(ClientErrorEvent event) {
+        log.add(event);
     }
 
     @Override

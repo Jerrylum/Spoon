@@ -8,7 +8,7 @@ public class ClientDisconnectedEvent {
     private String reason;
     private boolean remote;
 
-    public RemoteDevice getWebSocket() {
+    public RemoteDevice getDevice() {
         return device;
     }
 

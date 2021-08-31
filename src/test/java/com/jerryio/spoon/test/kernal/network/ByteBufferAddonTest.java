@@ -18,6 +18,11 @@ import org.junit.Test;
 public class ByteBufferAddonTest {
 
 	@Test
+    public void testByteBufferAddon() throws Exception {
+        new ByteBufferAddon() {};
+    }
+
+	@Test
 	public void testReadWriteAsciiString() {
 		String expected = "hello world";
 

@@ -37,6 +37,9 @@ public class EventListenerTest {
         manager.removeEventListener(new MockEventListener());
         assertEquals(2, manager.getEventListeners().size());
 
+        manager.removeEventListener(EventListener.class); // should change nothing
+        assertEquals(2, manager.getEventListeners().size());
+
         manager.removeEventListener(MockEventListener.class);
         assertEquals(0, manager.getEventListeners().size());
 
@@ -59,11 +62,16 @@ public class EventListenerTest {
         }
 
         public void testNotEvent(UUID id) {
-            throw new RuntimeException("test failed");
+            fail("test failed");
         }
 
         @EventHandler
-        public void testEvent(Integer somethingElse) {
+        public void testFailEvent(Integer somethingElse) {
+            fail("test failed");
+        }
+
+        @EventHandler
+        public void testExceptionEvent(UUID id) {
             throw new RuntimeException("test failed");
         }
     }

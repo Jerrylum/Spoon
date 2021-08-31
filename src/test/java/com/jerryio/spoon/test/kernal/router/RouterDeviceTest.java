@@ -4,10 +4,12 @@ import static org.junit.Assert.*;
 
 import java.net.InetSocketAddress;
 import java.net.URI;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.jerryio.spoon.kernal.client.ClientDevice;
+import com.jerryio.spoon.kernal.event.server.ServerErrorEvent;
 import com.jerryio.spoon.kernal.router.RouterDevice;
 import com.jerryio.spoon.test.kernal.client.MockClientListener;
 
@@ -37,6 +39,7 @@ public class RouterDeviceTest {
         Thread.sleep(200);
 
         assertTrue(localClient.getConnection().isConnected());
+        assertTrue(router.getDevice(0).getConnection().isConnected());
     }
 
     @Test
@@ -51,6 +54,7 @@ public class RouterDeviceTest {
         Thread.sleep(200);
 
         assertTrue(localClient.isEncrypted());
+        assertTrue(router.getDevice(0).getConnection().isConnected());
     }
 
     @Test
@@ -108,6 +112,34 @@ public class RouterDeviceTest {
 
         assertFalse(localClient1.getConnection().isConnected());
 
+        assertEquals("Orange", localClient2.getChannel());
+
         assertEquals(27, events.size());
+    }
+
+    @Test
+    public void testRouterInvalidPacket() throws Exception {
+        List<Object> events = new ArrayList<>();
+
+        RouterDevice router =  new RouterDevice(new InetSocketAddress(++port), new MockRouterListener(events));
+        router.start();
+
+        Thread.sleep(200);
+
+        ClientDevice localClient1 = new ClientDevice(new URI("ws://127.0.0.1:" + port), new MockClientListener(events));
+
+        Thread.sleep(200);
+
+        localClient1.getConnection().send("Hello");
+
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+        buffer.putInt(123);
+
+        localClient1.getConnection().send(buffer);
+
+        Thread.sleep(200);
+
+        assertEquals(3, events.size());
+        assertTrue(events.get(2) instanceof ServerErrorEvent);
     }
 }

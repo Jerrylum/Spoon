@@ -1,6 +1,5 @@
 package com.jerryio.spoon.kernal.event;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.Iterator;
@@ -38,12 +37,14 @@ public interface EventListenerManager {
                         if (parms[i].getType() != args[i].getClass()) continue methods;
                     }
 
-                    m.invoke(listener, args);
+                    try {
+                        m.invoke(listener, args);
+                    } catch (Exception e) {
+                    }
                 }
             }
             return true;
-        } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
             return false;
         }
     }
