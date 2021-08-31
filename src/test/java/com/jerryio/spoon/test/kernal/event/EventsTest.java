@@ -1,7 +1,6 @@
 package com.jerryio.spoon.test.kernal.event;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.Assert.*;
 
 import com.jerryio.spoon.kernal.event.client.ClientErrorEvent;
 import com.jerryio.spoon.kernal.event.client.ConnectionCloseEvent;

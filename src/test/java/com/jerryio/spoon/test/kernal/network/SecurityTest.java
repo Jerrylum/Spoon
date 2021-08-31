@@ -1,7 +1,6 @@
 package com.jerryio.spoon.test.kernal.network;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.Assert.*;
 
 import java.security.GeneralSecurityException;
 
