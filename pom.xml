@@ -3,7 +3,7 @@
   <groupId>com.jerryio.spoon.kernal</groupId>
   <artifactId>SpoonKernal</artifactId>
   
-  <version>0.5.0</version>
+  <version>0.6.0</version>
   <name>SpoonKernal</name>
   <inceptionYear>2021</inceptionYear>
   <packaging>jar</packaging>
