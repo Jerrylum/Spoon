@@ -42,7 +42,7 @@ public abstract class RouterListener implements EventListener {
         // Confirm
         device.getConnection().sendPacket(new ReceivedPacket(device.getConnection().getReceivedPackets()));
 
-        // Boardcast
+        // Broadcast
         for (RemoteDevice r : getRouter().getDevices())
             if (r.getChannel().equals(device.getChannel()) && !r.equals(device))
                 r.sendTextMessage(packet.getMessage());

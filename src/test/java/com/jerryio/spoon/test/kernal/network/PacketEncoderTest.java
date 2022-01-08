@@ -17,7 +17,7 @@ import org.junit.Test;
 public class PacketEncoderTest {
 
     @Test
-    public void testPacketEncoderContructer() throws Exception {
+    public void testPacketEncodeConstructor() throws Exception {
         new PacketEncoder();
     }
 
@@ -66,5 +66,21 @@ public class PacketEncoderTest {
         SetChannelPacket actual = (SetChannelPacket)PacketEncoder.decode(buffer, conn);
 
         assertEquals(expected.getChannel(), actual.getChannel());
+    }
+    
+    @Test(expected = RuntimeException.class)
+    public void testTooBigPacket() throws Exception {
+        ByteBuffer buf = ByteBuffer.allocate(20);
+        buf.putInt(1024*1024 + 1).flip();
+        
+        PacketEncoder.decode(buf, null);
+    }
+    
+    @Test(expected = RuntimeException.class)
+    public void testTooSmallPacket() throws Exception {
+        ByteBuffer buf = ByteBuffer.allocate(20);
+        buf.putInt(-1).flip();
+        
+        PacketEncoder.decode(buf, null);
     }
 }
