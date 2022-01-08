@@ -67,4 +67,20 @@ public class PacketEncoderTest {
 
         assertEquals(expected.getChannel(), actual.getChannel());
     }
+    
+    @Test(expected = RuntimeException.class)
+    public void testTooBigPacket() throws Exception {
+        ByteBuffer buf = ByteBuffer.allocate(20);
+        buf.putInt(1024*1024 + 1).flip();
+        
+        PacketEncoder.decode(buf, null);
+    }
+    
+    @Test(expected = RuntimeException.class)
+    public void testTooSmallPacket() throws Exception {
+        ByteBuffer buf = ByteBuffer.allocate(20);
+        buf.putInt(-1).flip();
+        
+        PacketEncoder.decode(buf, null);
+    }
 }

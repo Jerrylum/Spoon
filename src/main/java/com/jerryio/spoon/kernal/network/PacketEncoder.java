@@ -32,6 +32,10 @@ public class PacketEncoder {
 
     public static Packet decode(ByteBuffer gen3, Connection connection) throws Exception {
         int gen3Length = gen3.getInt();
+        if (gen3Length > 1024*1024)
+            throw new RuntimeException("Packet too big! (" + gen3Length + ")");
+        if (gen3Length < 0)
+            throw new RuntimeException("Packet less than 0!");
         byte[] gen3bytes = new byte[gen3Length];
         gen3.get(gen3bytes, 0, gen3Length);
         
