@@ -17,7 +17,7 @@ import org.junit.Test;
 public class PacketEncoderTest {
 
     @Test
-    public void testPacketEncoderContructer() throws Exception {
+    public void testPacketEncodeConstructor() throws Exception {
         new PacketEncoder();
     }
 
